@@ -3,6 +3,22 @@
   
     
     <entry>
+      <title><![CDATA[设计心理学_格式塔]]></title>
+      <url>/2017/05/18/%E8%AE%BE%E8%AE%A1%E5%BF%83%E7%90%86%E5%AD%A6_%E6%A0%BC%E5%BC%8F%E5%A1%94/</url>
+      <content type="html"></content>
+      
+        
+        <tags>
+            
+            <tag> 交互设计 </tag>
+            
+            <tag> 心理学 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[SASS 之美(1)]]></title>
       <url>/2017/05/18/Sass%E4%B9%8B%E7%BE%8E/</url>
       <content type="html"><![CDATA[<h4 id="关于Sass"><a href="#关于Sass" class="headerlink" title="关于Sass"></a>关于Sass</h4><p>  sass在开发文档中这样描述：是一个css的扩展，它使得css用起来更加优雅和强大;<br>  Sass 对自己的定位首先是一个预处理器。<br>  我之所以喜欢 Sass 源于它最大程度保留了CSS的原生特性。Sass 的设计基于非常坚实的设计原则：大部分的设计顺其自然的来源于核心设计师们的信条，比如添加额外的功能会增加语言的复杂度，但以实用性衡量极具价值的话便得以保留；同时，使用 Sass 来美化一个块级元素，那么美化前后的效果应该是可预见和可推理的。同时，Sass 比其他预处理器更加关注细节。据我所知，核心设计者们非常关心 Sass 与 CSS 在细节上的一致性，并确保所有的常用方式具有高度一致的表现。换言之，Sass 的目标是解决开发者遇到的切实问题，提供高效的函数化解 CSS 的短板。</p>
