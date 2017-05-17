@@ -191,6 +191,7 @@ body {
 .article-category-link,
 .archive-year,
 .widget-title {
+  font-family: "Microsoft YaHei UI Light";
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 2px;
