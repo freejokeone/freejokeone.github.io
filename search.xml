@@ -4,8 +4,44 @@
     
     <entry>
       <title><![CDATA[SASS 之美(1)]]></title>
-      <url>/2017/05/18/Python/</url>
-      <content type="html"><![CDATA[<p>#关于Sass<br>sass在开发文档中这样描述：是一个css的扩展，它使得css用起来更加优雅和强大</p>
+      <url>/2017/05/18/Sass%E4%B9%8B%E7%BE%8E/</url>
+      <content type="html"><![CDATA[<h4 id="关于Sass"><a href="#关于Sass" class="headerlink" title="关于Sass"></a>关于Sass</h4><p>  sass在开发文档中这样描述：是一个css的扩展，它使得css用起来更加优雅和强大;<br>  Sass 对自己的定位首先是一个预处理器。<br>  我之所以喜欢 Sass 源于它最大程度保留了CSS的原生特性。Sass 的设计基于非常坚实的设计原则：大部分的设计顺其自然的来源于核心设计师们的信条，比如添加额外的功能会增加语言的复杂度，但以实用性衡量极具价值的话便得以保留；同时，使用 Sass 来美化一个块级元素，那么美化前后的效果应该是可预见和可推理的。同时，Sass 比其他预处理器更加关注细节。据我所知，核心设计者们非常关心 Sass 与 CSS 在细节上的一致性，并确保所有的常用方式具有高度一致的表现。换言之，Sass 的目标是解决开发者遇到的切实问题，提供高效的函数化解 CSS 的短板。</p>
+<h4 id="本篇要介绍的内容"><a href="#本篇要介绍的内容" class="headerlink" title="本篇要介绍的内容"></a>本篇要介绍的内容</h4><ul>
+<li>语法格式与书写规范</li>
+<li>命名规范</li>
+<li>注释</li>
+<li>结构设计</li>
+<li>响应式设计</li>
+<li>变量</li>
+<li>拓展</li>
+<li>混合</li>
+<li>条件语句</li>
+<li>循环</li>
+<li>扩展工具</li>
+<li>小结<h4 id="一、语法格式与书写规范"><a href="#一、语法格式与书写规范" class="headerlink" title="一、语法格式与书写规范"></a>一、语法格式与书写规范</h4></li>
+<li><p>格式规范     </p>
+<ul>
+<li>统一使用两个空格而不是使用tab</li>
+<li>每行保持适当的宽度，便于阅读和修改</li>
+<li>正确书多行css规则</li>
+<li>有意义的使用空格<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//Yep</span></div><div class="line">    <span class="selector-class">.test</span>&#123;</div><div class="line">    <span class="attribute">display</span>: inline-block;</div><div class="line">    <span class="attribute">box-sizing</span>: border-box;</div><div class="line">    <span class="attribute">margin</span>: <span class="number">0</span> auto;</div><div class="line">    &#125;</div><div class="line"><span class="comment">//Nope</span></div><div class="line">    <span class="selector-class">.test</span>&#123;</div><div class="line">        <span class="attribute">display</span>: inline-block;<span class="attribute">box-sizing</span>: border-box;</div><div class="line">        </div><div class="line">        </div><div class="line">        <span class="attribute">margin</span>: <span class="number">0</span> auto;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>编码问题:为了避免潜在的字符编码问题，在入口文件中通过 @charset 指令使用 UTF-8 编码格式。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">charset</span> <span class="string">"UTF-8"</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p>数字：在 Sass 中，数字类型包括了长度、持续时间、频率、角度等等无单位数字类型。Sass 允许在运行中计算这些度量值。</p>
+<ul>
+<li><p>零值：当数字小于 1 时，应该在小数点前写出 0. 永远不要显示小数尾部的0</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Yep </span></div><div class="line"><span class="selector-class">.foo</span> &#123; <span class="attribute">padding</span>: <span class="number">2em</span>; <span class="attribute">opacity</span>: <span class="number">0.5</span>; &#125;</div><div class="line"><span class="comment">// Nope </span></div><div class="line"><span class="selector-class">.foo</span> &#123; <span class="attribute">padding</span>: <span class="number">2.0em</span>; <span class="attribute">opacity</span>: .<span class="number">5</span>; &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>单位：当定义长度时， 0 后面不需要加单位。将一个单位添加给数字的时候，实际上是让该数值乘以1个单位 。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Yep </span></div><div class="line"><span class="variable">$length</span>: <span class="number">0</span>;</div><div class="line"><span class="comment">// Nope </span></div><div class="line"><span class="variable">$length</span>: <span class="number">0em</span>;</div><div class="line"> <span class="comment">//-------------------------</span></div><div class="line"><span class="variable">$value</span>: <span class="number">42</span>;</div><div class="line"><span class="comment">// Yep </span></div><div class="line"><span class="variable">$length</span>: <span class="variable">$value</span> * <span class="number">1px</span>;</div><div class="line"><span class="comment">// Nope </span></div><div class="line"><span class="variable">$length</span>: <span class="variable">$value</span> + px;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
 ]]></content>
       
         
