@@ -588,6 +588,7 @@ a.article-title:hover {
 .article-entry img,
 .article-entry video {
   max-width: 100%;
+  width: 100%;
   height: auto;
   display: block;
   margin: auto;
@@ -1264,6 +1265,9 @@ pre .javascript .function {
   }
 }
 @media screen and (max-width: 479px) {
+  .widget-wrap {
+    margin: 20px 0 !important;
+  }
   .mobile-nav-link {
     display: block;
     color: #258fb8;
@@ -1282,9 +1286,6 @@ pre .javascript .function {
     width: 24.166666666666668%;
     margin: 0 0.416666666666667%;
   }
-}
-#sidebar .widget-wrap {
-  margin: 20px 0;
 }
 .widget-wrap {
   margin: 50px 0;

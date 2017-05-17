@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>WN_Blog</title>
+  <title>Admine_Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="作为一名互联网行业的新人，以此来记录自己的学习过程，并和大家一起分享">
 <meta property="og:type" content="website">
-<meta property="og:title" content="WN_Blog">
+<meta property="og:title" content="Admine_Blog">
 <meta property="og:url" content="http://freejokeone.github.io/index.html">
-<meta property="og:site_name" content="WN_Blog">
+<meta property="og:site_name" content="Admine_Blog">
 <meta property="og:description" content="作为一名互联网行业的新人，以此来记录自己的学习过程，并和大家一起分享">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WN_Blog">
+<meta name="twitter:title" content="Admine_Blog">
 <meta name="twitter:description" content="作为一名互联网行业的新人，以此来记录自己的学习过程，并和大家一起分享">
   
-    <link rel="alternate" href="/atom.xml" title="WN_Blog" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Admine_Blog" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -36,7 +36,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">WN_Blog</a>
+        <a href="/" id="logo">Admine_Blog</a>
       </h1>
       
         <h2 id="subtitle-wrap">
@@ -96,11 +96,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p><img src="../img/GST_source/banner.jpg" alt="Alt text" title="Optional title"></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://freejokeone.github.io/2017/05/18/设计心理学_格式塔/" data-id="cj2swpvlc00018guy8ousyf75" class="article-share-link">Share</a>
+      <a data-url="http://freejokeone.github.io/2017/05/18/设计心理学_格式塔/" data-id="cj2t3hofq0000c4uyxahcooij" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/交互设计/">交互设计</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心理学/">心理学</a></li></ul>
@@ -112,9 +113,9 @@
 
 
   
-    <article id="post-Sass之美" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Sass之美_1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/05/18/Sass之美/" class="article-date">
+    <a href="/2017/05/18/Sass之美_1/" class="article-date">
   <time datetime="2017-05-17T16:28:06.000Z" itemprop="datePublished">2017-05-17</time>
 </a>
     
@@ -126,7 +127,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/18/Sass之美/">SASS 之美(1)</a>
+      <a class="article-title" href="/2017/05/18/Sass之美_1/">SASS 之美(1)</a>
     </h1>
   
 
@@ -231,11 +232,31 @@
 <li>命名空间:防止与其他人的代码发生冲突，就可能会考虑使用命名空间包裹你所有的变量、函数、混合宏和占位符。<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ad-configuration</span>: ();</div><div class="line">@function ad-rainbow(<span class="variable">$unicorn</span>) &#123;&#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h4 id="三、注释"><a href="#三、注释" class="headerlink" title="三、注释"></a>三、注释</h4>
+<h4 id="三、注释"><a href="#三、注释" class="headerlink" title="三、注释"></a>三、注释</h4><p>书写注释原因很简单，如果有人打算六个月或一年后要继续阅读和更新这些代码。不要让任何人处于如此境地：这不是我写的，上帝，为什么会这样。CSS 的实现很简单，但我们需要为此付出巨大的注释量。</p>
+<ul>
+<li>一个文件的结构或者作用；</li>
+<li>规则集的目标；</li>
+<li>使用幻数背后的目的；</li>
+<li>CSS 声明的原因；</li>
+<li>CSS 声明的顺序；</li>
+<li>方法执行背后的逻辑思维。<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">* Helper class to truncate and add ellipsis to a string too long for it to fit</div><div class="line">* on a single line.</div><div class="line">* 1. Prevent content from wrapping, forcing it on a single line.</div><div class="line">* 2. Add ellipsis at the end of the line.</div><div class="line">*/</div><div class="line"><span class="selector-class">.ellipsis</span> &#123;</div><div class="line"><span class="attribute">white-space</span>: nowrap; <span class="comment">/* 1 */</span></div><div class="line"><span class="attribute">text-overflow</span>: ellipsis; <span class="comment">/* 2 */</span></div><div class="line"><span class="attribute">overflow</span>: hidden;</div><div class="line">&#125; </div><div class="line"></div><div class="line"><span class="comment">//推荐使用的</span></div><div class="line"></div><div class="line"><span class="comment">// Add current module to the list of imported modules.</span></div><div class="line"><span class="comment">// `!global` flag is required so it actually updates the global variable.</span></div><div class="line"><span class="variable">$imported-modules</span>: append(<span class="variable">$imported-modules</span>, <span class="variable">$module</span>)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>上述注释方式在编译之后不会输出</p>
+<p><strong>文档注释</strong><br>了解JsDoc,对这一块比较容易理解，旨在代码库中复用的变量、函数、混合宏和占位符，都应该使用SassDoc 记录下来作为全部API 的一部分。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/// Vertical rhythm baseline used all over the code base.</span></div><div class="line"><span class="comment">/// @type Length</span></div><div class="line"><span class="variable">$vertical-rhythm-baseline</span>: <span class="number">1.5rem</span>;</div></pre></td></tr></table></figure>
+<p>SassDoc主要的作用：</p>
+<ul>
+<li>作为公有或私有API 的一部分，在所有的地方使用一个注释系统强制标准化注释</li>
+<li>通过使用任意的SassDoc 终端(CLI tool, Grunt, Gulp, Broccoli, Node…)，能够生成API 文档的HTML版本。</li>
+</ul>
+<p>例子：<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/// Mixin helping defining both `width` and `height` simultaneously.</span></div><div class="line"><span class="comment">///</span></div><div class="line"><span class="comment">/// @author Hugo Giraudel</span></div><div class="line"><span class="comment">///</span></div><div class="line"><span class="comment">/// @access public</span></div><div class="line"><span class="comment">///</span></div><div class="line"><span class="comment">/// @param &#123;Length&#125; $width - Element’s `width`</span></div><div class="line"><span class="comment">/// @param &#123;Length&#125; $height [$width] - Element’s `height`</span></div><div class="line"><span class="comment">///</span></div><div class="line"><span class="comment">/// @example scss - Usage</span></div><div class="line"><span class="comment">/// .foo &#123;</span></div><div class="line"><span class="comment">/// @include size(10em);</span></div><div class="line"><span class="comment">/// &#125;</span></div><div class="line"><span class="comment">///</span></div><div class="line"><span class="comment">/// .bar &#123;</span></div><div class="line"><span class="comment">/// @include size(100%, 10em);</span></div><div class="line"><span class="comment">/// &#125;</span></div><div class="line"><span class="comment">///</span></div><div class="line"><span class="comment">/// @example css - CSS output</span></div><div class="line"><span class="comment">/// .foo &#123;</span></div><div class="line"><span class="comment">/// width: 10em;</span></div><div class="line"><span class="comment">/// height: 10em;</span></div><div class="line"><span class="comment">/// &#125;</span></div><div class="line"><span class="comment">///</span></div><div class="line"><span class="comment">/// .bar &#123;</span></div><div class="line"><span class="comment">/// width: 100%;</span></div><div class="line"><span class="comment">/// height: 10em;</span></div><div class="line"><span class="comment">/// &#125;</span></div><div class="line">@<span class="keyword">mixin</span> size(<span class="variable">$width</span>, <span class="variable">$height</span>: <span class="variable">$width</span>) &#123;</div><div class="line"><span class="attribute">width</span>: <span class="variable">$width</span>;</div><div class="line"><span class="attribute">height</span>: <span class="variable">$height</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><em>相关内容参考自<a href="https://sass-guidelin.es/" target="_blank" rel="external">sass-guidelin</a></em></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://freejokeone.github.io/2017/05/18/Sass之美/" data-id="cj2swpvks00008guyvpoxfivg" class="article-share-link">Share</a>
+      <a data-url="http://freejokeone.github.io/2017/05/18/Sass之美_1/" data-id="cj2t3hog40001c4uyvhygcjlu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sass/">sass</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
@@ -295,7 +316,7 @@
           </li>
         
           <li>
-            <a href="/2017/05/18/Sass之美/">SASS 之美(1)</a>
+            <a href="/2017/05/18/Sass之美_1/">SASS 之美(1)</a>
           </li>
         
       </ul>
