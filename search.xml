@@ -3,6 +3,137 @@
   
     
     <entry>
+      <title><![CDATA[Sass Guidelines(2)]]></title>
+      <url>/2017/05/24/Sass_Guidelines_2/</url>
+      <content type="html"><![CDATA[<h4 id="四、结构设计"><a href="#四、结构设计" class="headerlink" title="四、结构设计"></a>四、结构设计</h4><p>在项目开发周期中，构建一个CSS 项目可能会是你遇见的最困难的事情之一。构建完成后，保持整体结构的一致性并使所有设置有意义，则更加困难。幸运的是，使用CSS 预处理器的一个最主要好处就是可以拆分代码库到几个文件中，而又不会影响性能（正像CSS 指令@import 的功能）。感谢Sass 重载了@import 指令，在开发中即使使用大量文件都是安全的（实际上非常推荐），部署时所有文件都会被编译进一个单一样式表。<br>最重要的是，我无法形容我是多么需要设置大量的文件夹——即使是小项目中。这就像是在家里，你不会将所有的纸片放在同一个盒子中。你可以使用文件夹：一个为房产，一个为银行，一个为账单，等等。没有理由在构架CSS 项目时不这么做。拆分代码库到多个有意义的文件夹，当你回头来找东西的时候就会发现是那么容易。<br>有很多受欢迎的构建CSS 项目的体系结构：OOCSS, Atomic Design, Bootstrap 式, Foundation 式…它们各有优劣，难分伯仲。<br>我自己使用的方式，与Jonathan Snook 的SMACSS 非常相似，其致力于保持代码简洁易见。我认为，项目之间的结构是极其具体的。你完全可以随意摒弃或调整建议方案，拥有最适合自己需求的体系系统。</p>
+<h5 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h5><p>首先，在可以运行和运行良好两种状态之间存在着巨大的差别。其次，CSS 是一个相当容易被混淆的语言。使用的CSS 越少，工作会越愉快。没人想处理兆字节量的CSS 代码。保持样式表简短而高效，就不会有诸多诡异。将接口视为组件的集合来使用往往是非常棒的思维。<br>组件可以是任意的，前提是遵循以下规范：</p>
+<ul>
+<li>可以做一件事，只做一件；</li>
+<li>在整个项目中可以重用，具有可复用性；</li>
+<li>各自独立</li>
+</ul>
+<p>例如，搜索框就应该被视为一个组件，可以在不同位置、不同页面、多种环境下重复使用。它不应该受限于DOM中的位置（页脚、侧边栏、主内容区…）。<br>几乎所有的接口都可以被视为小组件，而且强烈建议坚持这种模式。这不仅仅会精简整个项目中CSS 的代码量，而且也会比维护一个到处无逻辑的烂摊子容易得多。</p>
+<h5 id="组件结构"><a href="#组件结构" class="headerlink" title="组件结构"></a>组件结构</h5><p>理想情况下，每个组件都应该拥有自己的文件夹（存在于components 文件之下，详见7-1 模式(页0)），比如components/_button.scss 。每个组件的样式应该包含以下内容：</p>
+<ul>
+<li>组件本身的样式</li>
+<li>和组件样式有关的变量、修饰器以及状态</li>
+<li>如有需要，设置组件的子级样式</li>
+</ul>
+<p>如果你希望可以定制组件的主题（主题文件置于themes/ 文件夹之内），可以限制样式中可以被修改的种类，比如尺寸、内间距、外间距以及对齐方式等等，可以开放颜色、阴影、字体、背景等方面的样式。<br>一个组件文件内可以存在与该组件密切相关的变量、占位符、混合宏甚至是函数，但是要牢记，应该避免对其他组件样式的引用，否则将会让项目整体的依赖关系变得难以维护。<br>下面是一个Button 组件的示例：<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Button-specific variables</span></div><div class="line"><span class="variable">$button-color</span>: <span class="variable">$secondary-color</span>;</div><div class="line"><span class="comment">// …include any button-specific:</span></div><div class="line"><span class="comment">// - mixins</span></div><div class="line"><span class="comment">// - placeholders</span></div><div class="line"><span class="comment">// - functions</span></div><div class="line"><span class="comment">/**</span></div><div class="line">* Buttons</div><div class="line">*/</div><div class="line"><span class="selector-class">.button</span> &#123;</div><div class="line">@<span class="keyword">include</span> vertical-rhythm;</div><div class="line"><span class="attribute">display</span>: block;</div><div class="line"><span class="attribute">padding</span>: <span class="number">1rem</span>;</div><div class="line"><span class="attribute">color</span>: <span class="variable">$button-color</span>;</div><div class="line"><span class="comment">// …etc.</span></div><div class="line"><span class="comment">/**</span></div><div class="line">* Inlined buttons on large screens</div><div class="line">*/</div><div class="line">@<span class="keyword">include</span> respond-to(<span class="string">'medium'</span>) &#123;</div><div class="line"><span class="attribute">display</span>: inline-block;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">/**</span></div><div class="line">* Icons within buttons</div><div class="line">*/</div><div class="line"><span class="selector-class">.button</span> &gt; svg &#123;</div><div class="line">fill: currentcolor;</div><div class="line"><span class="comment">// …etc.</span></div><div class="line">&#125;</div><div class="line"><span class="comment">/**</span></div><div class="line">* Inline button</div><div class="line">*/</div><div class="line"><span class="selector-class">.button--inline</span> &#123;</div><div class="line"><span class="attribute">display</span>: inline-block;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h5 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h5><p>回到结构这个话题上来，好吗？通常我使用自称为7-1 模式的结构：7 个文件夹，1 个文件。基本上，你需要将所有的部件放进7 个不同的文件夹和一个位于根目录的文件（通常命名为main.scss ）中——这个文件编译时会引用所有文件夹而形成一个CSS 样式表。</p>
+<ul>
+<li>abstracts/</li>
+<li>base/</li>
+<li>components/</li>
+<li>layout/</li>
+<li>pages/</li>
+<li>themes/</li>
+<li>vendors/</li>
+</ul>
+<p>当然还有它:</p>
+<ul>
+<li>main.scss</li>
+</ul>
+<p><img src="/img/2017_5/sass-wallpaper.jpg" alt="Alt text" title="Optional title"></p>
+<p>理想情况下，目录层次如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">sass/</div><div class="line">|</div><div class="line">|–abstracts/</div><div class="line">| |–_variables.scss # Sass Variables</div><div class="line">| |–_functions.scss # Sass Functions</div><div class="line">| |–_mixins.scss # Sass Mixins</div><div class="line">| |–_placeholders.scss # Sass Placeholders</div><div class="line">|</div><div class="line">|–base/</div><div class="line">| |–_reset.scss # Reset/normalize</div><div class="line">| |–_typography.scss # Typography rules</div><div class="line">| …# Etc.</div><div class="line">|</div><div class="line">|–components/</div><div class="line">| |–_buttons.scss # Buttons</div><div class="line">| |–_carousel.scss # Carousel</div><div class="line">| |–_cover.scss # Cover</div><div class="line">| |–_dropdown.scss # Dropdown</div><div class="line">| …# Etc.</div><div class="line">|</div><div class="line">|–layout/</div><div class="line">| |–_navigation.scss # Navigation</div><div class="line">| |–_grid.scss # Grid system</div><div class="line">| |–_header.scss # Header</div><div class="line">| |–_footer.scss # Footer</div><div class="line">| |–_sidebar.scss # Sidebar</div><div class="line">| |–_forms.scss # Forms</div><div class="line">| …# Etc.</div><div class="line">|</div><div class="line">|–pages/</div><div class="line">| |–_home.scss # Home specific styles</div><div class="line">| |–_contact.scss # Contact specific styles</div><div class="line">| …# Etc.</div><div class="line">|</div><div class="line">|–themes/</div><div class="line">| |–_theme.scss # Default theme</div><div class="line">| |–_admin.scss # Admin theme</div><div class="line">| …# Etc.</div><div class="line">|</div><div class="line">|–vendors/</div><div class="line">| |–_bootstrap.scss # Bootstrap</div><div class="line">| |–_jquery-ui.scss # jQuery UI</div><div class="line">| …# Etc.</div><div class="line">|</div><div class="line">`–main.scss # Main Sass file</div></pre></td></tr></table></figure></p>
+<h5 id="Base文件夹"><a href="#Base文件夹" class="headerlink" title="Base文件夹"></a>Base文件夹</h5><p>base/ 文件夹存放项目中的模板文件。在这里，可以找到重置文件、排版规范文件或者一个样式表——定义一些HTML 元素公认的标准样式（我喜欢命名为_base.scss ）。</p>
+<ul>
+<li>_base.scss</li>
+<li>_reset.scss</li>
+<li>_typography.scss<br>如果你的项目中使用了大量的CSS 动画, 那么你有必要考虑添加一个_animations.scss 文件来统一管理这些动画。如果只是偶尔使用一些动画，也可以将这些动画融入到调用它们的文件中。</li>
+</ul>
+<h5 id="Layout文件夹"><a href="#Layout文件夹" class="headerlink" title="Layout文件夹"></a>Layout文件夹</h5><p>layout/ 文件夹存放构建网站或者应用程序使用到的布局部分。该文件夹存放网站主体（头部、尾部、导航栏、侧边栏…）的样式表、栅格系统甚至是所有表单的CSS 样式。</p>
+<ul>
+<li>_grid.scss</li>
+<li>_header.scss</li>
+<li>_footer.scss</li>
+<li>_sidebar.scss</li>
+<li>_forms.scss</li>
+<li>_navigation.scss</li>
+</ul>
+<p>layout/ 文件夹也会被称为partials/ , 具体使用情况取决于个人喜好。</p>
+<h5 id="Components文件夹"><a href="#Components文件夹" class="headerlink" title="Components文件夹"></a>Components文件夹</h5><p>对于小型组件来说，有一个components/ 文件夹来存放。相对于layout/ 的宏观（定义全局线框结构），components/ 更专注于局部组件。该文件夹包含各类具体模块，基本上是所有的独立模块，比如一个滑块、一个加载块、一个部件……由于整个网站或应用程序主要由微型模块构成，components/ 中往往有大量文件。</p>
+<ul>
+<li>_media.scss</li>
+<li>_carousel.scss</li>
+<li>_thumbnails.scss</li>
+</ul>
+<p>components/ 文件夹也会被称为modules/ , 具体使用情况取决于个人喜好</p>
+<h5 id="Pages文件夹"><a href="#Pages文件夹" class="headerlink" title="Pages文件夹"></a>Pages文件夹</h5><p>如果页面有特定的样式，最好将该样式文件放进pages/ 文件夹并用页面名字。例如，主页通常具有独特的样式，因此可以在pages/ 下包含一个_home.scss 以实现需求。</p>
+<ul>
+<li>_home.scss</li>
+<li>_contact.scss</li>
+</ul>
+<p>取决于各自的开发流程，这些文件可以使用你自己的前缀命名，避免在最终样式表中与他人的样式表发生合并。一切完全取决于你。</p>
+<h5 id="Themes文件夹"><a href="#Themes文件夹" class="headerlink" title="Themes文件夹"></a>Themes文件夹</h5><p>在大型网站和应用程序中，往往有多种主题。虽有多种方式管理这些主题，但是我个人更喜欢把它们存放在themes/ 文件夹中。</p>
+<ul>
+<li>_theme.scss</li>
+<li>_admin.scss</li>
+</ul>
+<p>这个文件夹与项目的具体实现有密切关系，并且在许多项目中是并不存在的。</p>
+<h5 id="Abstracts-文件夹"><a href="#Abstracts-文件夹" class="headerlink" title="Abstracts 文件夹"></a>Abstracts 文件夹</h5><p>abstracts/ 文件夹包含了整个项目中使用到的Sass 辅助工具，这里存放着每一个全局变量、函数、混合宏和占位符。该文件夹的经验法则是，编译后这里不应该输出任何CSS，单纯的只是一些Sass 辅助工具。</p>
+<ul>
+<li>_variables.scss</li>
+<li>_mixins.scss</li>
+<li>_functions.scss</li>
+<li>_placeholders.scss</li>
+</ul>
+<p>当项目体量庞大工具复杂时，通过主题而不是类型分类整理可能更有帮助，比如排版（_typography.scss ）、主题（_theming.scss ）等。每一个文件都包含所有的相关信息：变量、函数、混合宏和占位符。这样做可以让维护更加单，特别针对于文件较长的情况。abstracts/ 文件夹也会被称为helpers/ 或utilities ，具体使用情况取决于个人喜好。</p>
+<h5 id="Vendors文件夹"><a href="#Vendors文件夹" class="headerlink" title="Vendors文件夹"></a>Vendors文件夹</h5><p>最后但并非最终的是，大多数的项目都有一个vendors/ 文件夹，用来存放所有外部库和框架（Normalize, Bootstrap, jQueryUI, FancyCarouselSliderjQueryPowered……）的CSS 文件。将这些文件放在同一个文件中是一个很好的说明方式:”嘿，这些不是我的代码，无关我的责任。”</p>
+<ul>
+<li>_normalize.scss</li>
+<li>_bootstrap.scss</li>
+<li>_jquery-ui.scss</li>
+<li>_select2.scss</li>
+</ul>
+<p>如果你重写了任何库或框架的部分，建议设置第8 个文件夹vendors-extensions/ 来存放，并使用相同的名字命名。<br>例如，vendors-extensions/_boostrap.scss 文件存放所有重写Bootstrap 默认CSS 之后的CSS 规则。这是为了避免在原库或者框架文件中进行二次编辑——显然不是好方法。</p>
+<h5 id="入口文件"><a href="#入口文件" class="headerlink" title="入口文件"></a>入口文件</h5><p>主文件（通常写作main.scss ）应该是整个代码库中唯一开头不用下划线命名的Sass 文件。除@import 和注<br>释外，该文件不应该包含任何其他代码。<br>文件应该按照存在的位置顺序依次被引用进来：</p>
+<ol>
+<li>abstracts/</li>
+<li>vendors/</li>
+<li>base/</li>
+<li>layout/</li>
+<li>components/</li>
+<li>pages/</li>
+<li>themes/</li>
+</ol>
+<p>为了保持可读性，主文件应遵守如下准则：</p>
+<ul>
+<li>每个@import 引用一个文件；</li>
+<li>每个@import 单独一行；</li>
+<li>从相同文件夹中引入的文件之间不用空行；</li>
+<li>从不同文件夹中引入的文件之间用空行分隔；</li>
+<li>忽略文件扩展名和下划线前缀。</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">import</span> <span class="string">'abstracts/variables'</span>;</div><div class="line">@<span class="keyword">import</span> <span class="string">'abstracts/functions'</span>;</div><div class="line">@<span class="keyword">import</span> <span class="string">'abstracts/mixins'</span>;</div><div class="line">@<span class="keyword">import</span> <span class="string">'abstracts/placeholders'</span>;</div><div class="line">@<span class="keyword">import</span> <span class="string">'vendors/bootstrap'</span>;</div><div class="line">@<span class="keyword">import</span> <span class="string">'vendors/jquery-ui'</span>;</div><div class="line">@<span class="keyword">import</span> <span class="string">'base/reset'</span>;</div><div class="line">@<span class="keyword">import</span> <span class="string">'base/typography'</span>;</div><div class="line">@<span class="keyword">import</span> <span class="string">'layout/navigation'</span>;</div><div class="line">@<span class="keyword">import</span> <span class="string">'layout/grid'</span>;</div><div class="line">@<span class="keyword">import</span> <span class="string">'layout/header'</span>;</div><div class="line">@<span class="keyword">import</span> <span class="string">'layout/footer'</span>;</div><div class="line">@<span class="keyword">import</span> <span class="string">'layout/sidebar'</span>;</div><div class="line">@<span class="keyword">import</span> <span class="string">'layout/forms'</span>;</div><div class="line">@<span class="keyword">import</span> <span class="string">'components/buttons'</span>;</div><div class="line">@<span class="keyword">import</span> <span class="string">'components/carousel'</span>;</div><div class="line">@<span class="keyword">import</span> <span class="string">'components/cover'</span>;</div><div class="line">@<span class="keyword">import</span> <span class="string">'components/dropdown'</span>;</div><div class="line">@<span class="keyword">import</span> <span class="string">'pages/home'</span>;</div><div class="line">@<span class="keyword">import</span> <span class="string">'pages/contact'</span>;</div><div class="line">@<span class="keyword">import</span> <span class="string">'themes/theme'</span>;</div><div class="line">@<span class="keyword">import</span> <span class="string">'themes/admin'</span>;</div></pre></td></tr></table></figure>
+<p>这里还有另一种引入的有效方式。令人高兴的是，它使文件更具有可读性；令人沮丧的是，更新时会有些麻烦。不管怎么说，由你决定哪一个最好，这没有任何问题。对于这种方式，主要文件应遵守如下准则：</p>
+<ul>
+<li>每个文件夹只使用一个@import</li>
+<li>每个@import 之后都断行</li>
+<li>每个文件占一行</li>
+<li>新的文件跟在最后的文件夹后面</li>
+<li>文件扩展名都可以省略</li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">import</span></div><div class="line"><span class="string">'abstracts/variables'</span>,</div><div class="line"><span class="string">'abstracts/functions'</span>,</div><div class="line"><span class="string">'abstracts/mixins'</span>,</div><div class="line"><span class="string">'abstracts/placeholders'</span>;</div><div class="line">@<span class="keyword">import</span></div><div class="line"><span class="string">'vendors/bootstrap'</span>,</div><div class="line"><span class="string">'vendors/jquery-ui'</span>;</div><div class="line">@<span class="keyword">import</span></div><div class="line"><span class="string">'base/reset'</span>,</div><div class="line"><span class="string">'base/typography'</span>;</div><div class="line">@<span class="keyword">import</span></div><div class="line"><span class="string">'layout/navigation'</span>,</div><div class="line"><span class="string">'layout/grid'</span>,</div><div class="line"><span class="string">'layout/header'</span>,</div><div class="line"><span class="string">'layout/footer'</span>,</div><div class="line"><span class="string">'layout/sidebar'</span>,</div><div class="line"><span class="string">'layout/forms'</span>;</div><div class="line">@<span class="keyword">import</span></div><div class="line"><span class="string">'components/buttons'</span>,</div><div class="line"><span class="string">'components/carousel'</span>,</div><div class="line"><span class="string">'components/cover'</span>,</div><div class="line"><span class="string">'components/dropdown'</span>;</div><div class="line">@<span class="keyword">import</span></div><div class="line"><span class="string">'pages/home'</span>,</div><div class="line"><span class="string">'pages/contact'</span>;</div><div class="line">@<span class="keyword">import</span></div><div class="line"><span class="string">'themes/theme'</span>,</div><div class="line"><span class="string">'themes/admin'</span>;</div></pre></td></tr></table></figure>
+<h5 id="关于Globbing"><a href="#关于Globbing" class="headerlink" title="关于Globbing"></a>关于Globbing</h5><p>在计算机编程中，通配符扩展模式通常使用通配符来匹配多个文件名，比如*.scss ，其工作机制是通过表达式而不是文件名列表来匹配文件组。在Sass 中，可以在入口文件中通过通配符扩展的形式导入其他文件，导入后的入口文件类似如下所示：<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">import</span> <span class="string">'abstracts/*'</span>;</div><div class="line">@<span class="keyword">import</span> <span class="string">'vendors/*'</span>;</div><div class="line">@<span class="keyword">import</span> <span class="string">'base/*'</span>;</div><div class="line">@<span class="keyword">import</span> <span class="string">'layout/*'</span>;</div><div class="line">@<span class="keyword">import</span> <span class="string">'components/*'</span>;</div><div class="line">@<span class="keyword">import</span> <span class="string">'pages/*'</span>;</div><div class="line">@<span class="keyword">import</span> <span class="string">'themes/*'</span>;</div></pre></td></tr></table></figure></p>
+<p>Sass 并不直接支持通配符扩展的机制，这是因为CSS 样式是对声明顺序非常敏感的，当我们使用通配符扩展的形式导入文件时，文件通常按照字典序导入，这种方式无法控制文件的导入顺序，继而会引起样式的错乱。<br>也就是说，在一个严格基于组件构成的架构中，必须十分注意组件之间的样式顺序，避免遗漏和错误覆盖任何样式。所以必须保证文件顺序对样式没有影响，方能使用通配符扩展模式。使用通配符扩展模式最大的好处就是无<br>需再花费时间处理入口文件中文件的增加和删除。<br>在Ruby Sass 中有一个sass-globbing 包可以用于解析通配符扩展机制。如果使用的是node-sass，可以使用Node.js 或者构建工具（Gulp，Grunt等等）来解析通配符扩展机制。</p>
+<h5 id="Shame-文件"><a href="#Shame-文件" class="headerlink" title="Shame 文件"></a>Shame 文件</h5><p>另一个有意思的方面，由业内已流行的Harry Roberts, Dave Rupert 和Chris Coyier 引起的，那就是将所有的CSS声明、Hack行为和我们不支持的行为放入一个shame file。该文件命名为_shame.scss ，在所有文件之后被引用，放在所有样式表的最后。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">* Nav specificity fix.</div><div class="line">*</div><div class="line">* Someone used an ID in the header code (`#header a &#123;&#125;`) which trumps the</div><div class="line">* nav selectors (`.site-nav a &#123;&#125;`). Use !important to override it until I</div><div class="line">* have time to refactor the header stuff.</div><div class="line">*/</div><div class="line"><span class="selector-class">.site-nav</span> <span class="selector-tag">a</span> &#123;</div><div class="line"><span class="attribute">color</span>: <span class="number">#BADA55</span> <span class="meta">!important</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><em>相关内容参考自<a href="https://sass-guidelin.es/" target="_blank" rel="external">sass-guidelin</a></em></p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> 前端 </tag>
+            
+            <tag> sass </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[设计心理学_格式塔]]></title>
       <url>/2017/05/18/%E8%AE%BE%E8%AE%A1%E5%BF%83%E7%90%86%E5%AD%A6_%E6%A0%BC%E5%BC%8F%E5%A1%94/</url>
       <content type="html"><![CDATA[<p><img src="/img/GST_source/banner.jpg" alt="Alt text" title="Optional title"></p>
@@ -20,8 +151,8 @@
     </entry>
     
     <entry>
-      <title><![CDATA[SASS 之美(1)]]></title>
-      <url>/2017/05/18/Sass%E4%B9%8B%E7%BE%8E_1/</url>
+      <title><![CDATA[Sass Guidelines(1)]]></title>
+      <url>/2017/05/18/Sass_Guidelines_1/</url>
       <content type="html"><![CDATA[<h4 id="关于Sass"><a href="#关于Sass" class="headerlink" title="关于Sass"></a>关于Sass</h4><p>  sass在开发文档中这样描述：是一个css的扩展，它使得css用起来更加优雅和强大;<br>  Sass 对自己的定位首先是一个预处理器。<br>  我之所以喜欢 Sass 源于它最大程度保留了CSS的原生特性。Sass 的设计基于非常坚实的设计原则：大部分的设计顺其自然的来源于核心设计师们的信条，比如添加额外的功能会增加语言的复杂度，但以实用性衡量极具价值的话便得以保留；同时，使用 Sass 来美化一个块级元素，那么美化前后的效果应该是可预见和可推理的。同时，Sass 比其他预处理器更加关注细节。据我所知，核心设计者们非常关心 Sass 与 CSS 在细节上的一致性，并确保所有的常用方式具有高度一致的表现。换言之，Sass 的目标是解决开发者遇到的切实问题，提供高效的函数化解 CSS 的短板。</p>
 <h4 id="本篇要介绍的内容"><a href="#本篇要介绍的内容" class="headerlink" title="本篇要介绍的内容"></a>本篇要介绍的内容</h4><ul>
 <li>语法格式与书写规范</li>
