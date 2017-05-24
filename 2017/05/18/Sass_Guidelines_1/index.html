@@ -6,13 +6,13 @@
   <title>Sass Guidelines(1) | Admine_Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="关于Sass  sass在开发文档中这样描述：是一个css的扩展，它使得css用起来更加优雅和强大;  Sass 对自己的定位首先是一个预处理器。  我之所以喜欢 Sass 源于它最大程度保留了CSS的原生特性。Sass 的设计基于非常坚实的设计原则：大部分的设计顺其自然的来源于核心设计师们的信条，比如添加额外的功能会增加语言的复杂度，但以实用性衡量极具价值的话便得以保留；同时，使用 Sass 来">
-<meta name="keywords" content="前端,css,sass">
+<meta name="keywords" content="前端,sass,css">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Sass Guidelines(1)">
 <meta property="og:url" content="http://freejokeone.github.io/2017/05/18/Sass_Guidelines_1/index.html">
 <meta property="og:site_name" content="Admine_Blog">
 <meta property="og:description" content="关于Sass  sass在开发文档中这样描述：是一个css的扩展，它使得css用起来更加优雅和强大;  Sass 对自己的定位首先是一个预处理器。  我之所以喜欢 Sass 源于它最大程度保留了CSS的原生特性。Sass 的设计基于非常坚实的设计原则：大部分的设计顺其自然的来源于核心设计师们的信条，比如添加额外的功能会增加语言的复杂度，但以实用性衡量极具价值的话便得以保留；同时，使用 Sass 来">
-<meta property="og:updated_time" content="2017-05-23T15:00:21.239Z">
+<meta property="og:updated_time" content="2017-05-23T15:05:17.876Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sass Guidelines(1)">
 <meta name="twitter:description" content="关于Sass  sass在开发文档中这样描述：是一个css的扩展，它使得css用起来更加优雅和强大;  Sass 对自己的定位首先是一个预处理器。  我之所以喜欢 Sass 源于它最大程度保留了CSS的原生特性。Sass 的设计基于非常坚实的设计原则：大部分的设计顺其自然的来源于核心设计师们的信条，比如添加额外的功能会增加语言的复杂度，但以实用性衡量极具价值的话便得以保留；同时，使用 Sass 来">
@@ -200,7 +200,7 @@
 <li>使用幻数背后的目的；</li>
 <li>CSS 声明的原因；</li>
 <li>CSS 声明的顺序；</li>
-<li>方法执行背后的逻辑思维。<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">* Helper class to truncate and add ellipsis to a string too long for it to fit</div><div class="line">* on a single line.</div><div class="line">* 1. Prevent content from wrapping, forcing it on a single line.</div><div class="line">* 2. Add ellipsis at the end of the line.</div><div class="line">*/</div><div class="line"><span class="selector-class">.ellipsis</span> &#123;</div><div class="line"><span class="attribute">white-space</span>: nowrap; <span class="comment">/* 1 */</span></div><div class="line"><span class="attribute">text-overflow</span>: ellipsis; <span class="comment">/* 2 */</span></div><div class="line"><span class="attribute">overflow</span>: hidden;</div><div class="line">&#125; </div><div class="line"></div><div class="line"><span class="comment">//推荐使用的</span></div><div class="line"></div><div class="line"><span class="comment">// Add current module to the list of imported modules.</span></div><div class="line"><span class="comment">// `!global` flag is required so it actually updates the global variable.</span></div><div class="line"><span class="variable">$imported-modules</span>: append(<span class="variable">$imported-modules</span>, <span class="variable">$module</span>)</div></pre></td></tr></table></figure>
+<li>方法执行背后的逻辑思维。<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/******</span></div><div class="line">* Helper class to truncate and add ellipsis to a string too long for it to fit</div><div class="line">* on a single line.</div><div class="line">* 1. Prevent content from wrapping, forcing it on a single line.</div><div class="line">* 2. Add ellipsis at the end of the line.</div><div class="line">*/</div><div class="line"><span class="selector-class">.ellipsis</span> &#123;</div><div class="line"><span class="attribute">white-space</span>: nowrap; <span class="comment">/* 1 */</span></div><div class="line"><span class="attribute">text-overflow</span>: ellipsis; <span class="comment">/* 2 */</span></div><div class="line"><span class="attribute">overflow</span>: hidden;</div><div class="line">&#125; </div><div class="line"></div><div class="line"><span class="comment">//推荐使用的</span></div><div class="line"></div><div class="line"><span class="comment">// Add current module to the list of imported modules.</span></div><div class="line"><span class="comment">// `!global` flag is required so it actually updates the global variable.</span></div><div class="line"><span class="variable">$imported-modules</span>: append(<span class="variable">$imported-modules</span>, <span class="variable">$module</span>)</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>上述注释方式在编译之后不会输出</p>
@@ -217,7 +217,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://freejokeone.github.io/2017/05/18/Sass_Guidelines_1/" data-id="cj31ovjjj0000qouy0gc507tq" class="article-share-link">Share</a>
+      <a data-url="http://freejokeone.github.io/2017/05/18/Sass_Guidelines_1/" data-id="cj334t2dh00012wuyytjrofxf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sass/">sass</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
@@ -228,7 +228,7 @@
     
 <nav id="article-nav">
   
-    <a href="/2017/05/18/设计心理学_格式塔/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/05/21/设计心理学_格式塔/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
@@ -290,7 +290,7 @@
           </li>
         
           <li>
-            <a href="/2017/05/18/设计心理学_格式塔/">设计心理学_格式塔</a>
+            <a href="/2017/05/21/设计心理学_格式塔/">设计心理学_格式塔</a>
           </li>
         
           <li>
