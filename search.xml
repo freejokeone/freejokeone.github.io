@@ -3,6 +3,35 @@
   
     
     <entry>
+      <title><![CDATA[demo2]]></title>
+      <url>/2017/06/12/demo2/</url>
+      <content type="html"><![CDATA[<h4 id="Data-Visualization"><a href="#Data-Visualization" class="headerlink" title="Data Visualization"></a>Data Visualization</h4>]]></content>
+      
+        
+        <tags>
+            
+            <tag> 毕业设计 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[demo1]]></title>
+      <url>/2017/06/12/demo1/</url>
+      <content type="html"><![CDATA[<h4 id="AMAP"><a href="#AMAP" class="headerlink" title="AMAP"></a>AMAP</h4><p><em>DEMO地址<a href="/project/Map/index.html">—-AMAP—-</a></em></p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> 毕业设计 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Sass_Guidelines_3]]></title>
       <url>/2017/06/09/Sass-Guidelines_3/</url>
       <content type="html"><![CDATA[<h4 id="五：响应式设计与断点"><a href="#五：响应式设计与断点" class="headerlink" title="五：响应式设计与断点"></a>五：响应式设计与断点</h4><h5 id="断点命名"><a href="#断点命名" class="headerlink" title="断点命名"></a>断点命名</h5><p>使用媒介查询而不正对特定的设备是安全可靠的做法。特别指出我们不针对IPAD或者黑莓灯设备做特定的媒介查询。媒介查询应该关于屏幕的尺寸，直到当前的设计遇到阻断而将工作过继给下一个媒介查询。</p>
