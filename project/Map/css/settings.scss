@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+
+
+//font farm
+$lte7:true !default;
+$filter:false !default;
+$base_font_size:24px 18px 16px 14px !default;
+$base_line_height:1.5 !default;
+$base_font_family:"Microsoft Yahei";
+
+//elem gap
+$base_gap:20px !default;
+
+//bg color
+$red:#ff0000 !default;
+$pink:#eb6877 !default;
+$darken:#434343 !default;
+$orange:#fe940b !default;
+$green:#4edc07 !default;
+$info:#58cef9 !default;
+//font color
+$black:#000 !default;
+$gray_darker:#333 !default;
+$gray_center:#666666 !default;
+$gray_dark:#999 !default;
+$gray:#ccc !default;
+$gray_light:#ececec #f4f4f4 !default;
+$white:#fff !default;
+
+$font_info:$info !default;
+$base_font_color:$white $black $gray_darker !default;

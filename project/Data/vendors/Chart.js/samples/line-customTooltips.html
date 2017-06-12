@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Admine_Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Line Chart with Custom Tooltips              canvas{       -moz-user-select: none;       -webkit-user-select: none;       -ms-user-select: none;     }     #chartjs-tooltip {       opacity: 1;">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Admine_Blog">
+<meta property="og:url" content="http://freejokeone.github.io/project/Data/vendors/Chart.js/samples/line-customTooltips.html">
+<meta property="og:site_name" content="Admine_Blog">
+<meta property="og:description" content="Line Chart with Custom Tooltips              canvas{       -moz-user-select: none;       -webkit-user-select: none;       -ms-user-select: none;     }     #chartjs-tooltip {       opacity: 1;">
+<meta property="og:updated_time" content="2017-01-25T13:54:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Admine_Blog">
+<meta name="twitter:description" content="Line Chart with Custom Tooltips              canvas{       -moz-user-select: none;       -webkit-user-select: none;       -ms-user-select: none;     }     #chartjs-tooltip {       opacity: 1;">
+  
+    <link rel="alternate" href="/atom.xml" title="Admine_Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Admine_Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">交互设计,前端开发,Python,nodeJS</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+
+      <!--change code-->
+
+      <nav id="sub-nav">
+        <!--
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        -->
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://freejokeone.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/project/Data/vendors/Chart.js/samples/line-customTooltips.html" class="article-date">
+  <time datetime="2017-06-12T00:50:12.856Z" itemprop="datePublished">2017-06-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!doctype html>
+<html>
+
+<head>
+  <title>Line Chart with Custom Tooltips</title>
+  <script src="../dist/Chart.bundle.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <style>
+    canvas{
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+    }
+    #chartjs-tooltip {
+      opacity: 1;
+      position: absolute;
+      background: rgba(0, 0, 0, .7);
+      color: white;
+      border-radius: 3px;
+      -webkit-transition: all .1s ease;
+      transition: all .1s ease;
+      pointer-events: none;
+      -webkit-transform: translate(-50%, 0);
+      transform: translate(-50%, 0);
+    }
+
+    .chartjs-tooltip-key {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="canvas-holder1" style="width:75%;">
+    <canvas id="chart1">
+  </canvas></div>
+  <script>
+    window.count = 0;
+    Chart.defaults.global.pointHitDetectionRadius = 1;
+    var customTooltips = function(tooltip) {
+
+      // Tooltip Element
+      var tooltipEl = $('#chartjs-tooltip');
+
+      if (!tooltipEl[0]) {
+        $('body').append('<div id="chartjs-tooltip"></div>');
+        tooltipEl = $('#chartjs-tooltip');
+      }
+
+      // Hide if no tooltip
+      if (!tooltip.opacity) {
+        tooltipEl.css({
+          opacity: 0
+        });
+        $('.chartjs-wrap canvas')
+          .each(function(index, el) {
+            $(el).css('cursor', 'default');
+          });
+        return;
+      }
+
+      $(this._chart.canvas).css('cursor', 'pointer');
+
+      // Set caret Position
+      tooltipEl.removeClass('above below no-transform');
+      if (tooltip.yAlign) {
+        tooltipEl.addClass(tooltip.yAlign);
+      } else {
+        tooltipEl.addClass('no-transform');
+      }
+
+      // Set Text
+      if (tooltip.body) {
+        var innerHtml = [
+          (tooltip.beforeTitle || []).join('\n'), (tooltip.title || []).join('\n'), (tooltip.afterTitle || []).join('\n'), (tooltip.beforeBody || []).join('\n'), (tooltip.body || []).join('\n'), (tooltip.afterBody || []).join('\n'), (tooltip.beforeFooter || [])
+          .join('\n'), (tooltip.footer || []).join('\n'), (tooltip.afterFooter || []).join('\n')
+        ];
+        tooltipEl.html(innerHtml.join('\n'));
+      }
+
+      // Find Y Location on page
+      var top = 0;
+      if (tooltip.yAlign) {
+        if (tooltip.yAlign == 'above') {
+          top = tooltip.y - tooltip.caretHeight - tooltip.caretPadding;
+        } else {
+          top = tooltip.y + tooltip.caretHeight + tooltip.caretPadding;
+        }
+      }
+
+      var position = $(this._chart.canvas)[0].getBoundingClientRect();
+
+      // Display, position, and set styles for font
+      tooltipEl.css({
+        opacity: 1,
+        width: tooltip.width ? (tooltip.width + 'px') : 'auto',
+        left: position.left + tooltip.x + 'px',
+        top: position.top + top + 'px',
+        fontFamily: tooltip._fontFamily,
+        fontSize: tooltip.fontSize,
+        fontStyle: tooltip._fontStyle,
+        padding: tooltip.yPadding + 'px ' + tooltip.xPadding + 'px',
+      });
+    };
+    var randomScalingFactor = function() {
+      return Math.round(Math.random() * 100);
+    };
+    var lineChartData = {
+      labels: ["January", "February", "March", "April", "May", "June", "July"],
+      datasets: [{
+        label: "My First dataset",
+        data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+      }, {
+        label: "My Second dataset",
+        data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+      }]
+    };
+
+    window.onload = function() {
+      var chartEl = document.getElementById("chart1");
+      window.myLine = new Chart(chartEl, {
+        type: 'line',
+        data: lineChartData,
+        options: {
+          title:{
+            display:true,
+            text:'Chart.js Line Chart - Custom Tooltips'
+          },
+          tooltips: {
+            enabled: false,
+            custom: customTooltips
+          }
+        }
+      });
+    };
+  </script>
+</body>
+
+</html>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://freejokeone.github.io/project/Data/vendors/Chart.js/samples/line-customTooltips.html" data-id="cj3tflkb70028ucuy1uhy23rt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sass/">sass</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/交互设计/">交互设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理学/">心理学</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/sass/" style="font-size: 15px;">sass</a> <a href="/tags/交互设计/" style="font-size: 10px;">交互设计</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/心理学/" style="font-size: 10px;">心理学</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/09/Sass-Guidelines_3/">Sass_Guidelines_3</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/25/Javascript数据结构与算法（概述）/">Javascript数据结构与算法（概述）</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/24/Sass_Guidelines_2/">Sass Guidelines(2)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/21/设计心理学_格式塔/">设计心理学_格式塔</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/18/Sass_Guidelines_1/">Sass Guidelines(1)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Author: admine<br>
+      Link Me <a href="mailto:wangningcumt@126.com">wangningcumt@126.com</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="https://cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

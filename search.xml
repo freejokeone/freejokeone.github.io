@@ -3,6 +3,16 @@
   
     
     <entry>
+      <title><![CDATA[Sass_Guidelines_3]]></title>
+      <url>/2017/06/09/Sass-Guidelines_3/</url>
+      <content type="html"><![CDATA[<h4 id="五：响应式设计与断点"><a href="#五：响应式设计与断点" class="headerlink" title="五：响应式设计与断点"></a>五：响应式设计与断点</h4><h5 id="断点命名"><a href="#断点命名" class="headerlink" title="断点命名"></a>断点命名</h5><p>使用媒介查询而不正对特定的设备是安全可靠的做法。特别指出我们不针对IPAD或者黑莓灯设备做特定的媒介查询。媒介查询应该关于屏幕的尺寸，直到当前的设计遇到阻断而将工作过继给下一个媒介查询。</p>
+<p>与之相同的观点是设备不应该以设备的名称来命名。<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//好的</span></div><div class="line"><span class="variable">$breakpoints</span>:(</div><div class="line"><span class="string">'medium'</span>:(min-width:<span class="number">800px</span>),</div><div class="line"><span class="string">'large'</span>:(min-width:<span class="number">1000px</span>),</div><div class="line"><span class="string">'huge'</span>:(min-width:<span class="number">1200px</span>)</div><div class="line">)</div></pre></td></tr></table></figure></p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Javascript数据结构与算法（概述）]]></title>
       <url>/2017/05/25/Javascript%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%88%E6%A6%82%E8%BF%B0%EF%BC%89/</url>
       <content type="html"><![CDATA[<p>作为一名在大学以设计为主前端为辅的大学生，没有接触专业的计算机理论知识，对计算机数据结构算法编译原理尚未有过专业的训练，反复3遍学习javascript数据结构和算法之后越发感受到掌握数据结构的必要性。有部分人会认为没有计算机专业的计算机理论知识也能完成日常的工作，但在项目中处理复杂的数据处理问题。就越发感受到数据结构的重要性。</p>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Advanced usage | Admine_Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Prototype MethodsFor each chart, there are a set of global prototype methods on the shared ChartType which you may find useful. These are available on all charts created with Chart.js, but for the exa">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Advanced usage">
+<meta property="og:url" content="http://freejokeone.github.io/project/Data/vendors/Chart.js/docs/09-Advanced.html">
+<meta property="og:site_name" content="Admine_Blog">
+<meta property="og:description" content="Prototype MethodsFor each chart, there are a set of global prototype methods on the shared ChartType which you may find useful. These are available on all charts created with Chart.js, but for the exa">
+<meta property="og:updated_time" content="2017-01-25T13:54:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Advanced usage">
+<meta name="twitter:description" content="Prototype MethodsFor each chart, there are a set of global prototype methods on the shared ChartType which you may find useful. These are available on all charts created with Chart.js, but for the exa">
+  
+    <link rel="alternate" href="/atom.xml" title="Admine_Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Admine_Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">交互设计,前端开发,Python,nodeJS</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+
+      <!--change code-->
+
+      <nav id="sub-nav">
+        <!--
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        -->
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://freejokeone.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/project/Data/vendors/Chart.js/docs/09-Advanced.html" class="article-date">
+  <time datetime="2017-06-12T00:50:07.580Z" itemprop="datePublished">2017-06-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Advanced usage
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Prototype-Methods"><a href="#Prototype-Methods" class="headerlink" title="Prototype Methods"></a>Prototype Methods</h3><p>For each chart, there are a set of global prototype methods on the shared <code>ChartType</code> which you may find useful. These are available on all charts created with Chart.js, but for the examples, let’s use a line chart we’ve made.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// For example:</span></div><div class="line"><span class="keyword">var</span> myLineChart = <span class="keyword">new</span> Chart(ctx, config);</div></pre></td></tr></table></figure>
+<h4 id="destroy"><a href="#destroy" class="headerlink" title=".destroy()"></a>.destroy()</h4><p>Use this to destroy any chart instances that are created. This will clean up any references stored to the chart object within Chart.js, along with any associated event listeners attached by Chart.js.<br>This must be called before the canvas is reused for a new chart.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Destroys a specific chart instance</span></div><div class="line">myLineChart.destroy();</div></pre></td></tr></table></figure>
+<h4 id="update-duration-lazy"><a href="#update-duration-lazy" class="headerlink" title=".update(duration, lazy)"></a>.update(duration, lazy)</h4><p>Triggers an update of the chart. This can be safely called after replacing the entire data object. This will update all scales, legends, and then re-render the chart.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// duration is the time for the animation of the redraw in miliseconds</span></div><div class="line"><span class="comment">// lazy is a boolean. if true, the animation can be interupted by other animations</span></div><div class="line">myLineChart.data.datasets[<span class="number">0</span>].data[<span class="number">2</span>] = <span class="number">50</span>; <span class="comment">// Would update the first dataset's value of 'March' to be 50</span></div><div class="line">myLineChart.update(); <span class="comment">// Calling update now animates the position of March from 90 to 50.</span></div></pre></td></tr></table></figure>
+<h4 id="render-duration-lazy"><a href="#render-duration-lazy" class="headerlink" title=".render(duration, lazy)"></a>.render(duration, lazy)</h4><p>Triggers a redraw of all chart elements. Note, this does not update elements for new data. Use <code>.update()</code> in that case.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// duration is the time for the animation of the redraw in miliseconds</span></div><div class="line"><span class="comment">// lazy is a boolean. if true, the animation can be interupted by other animations</span></div><div class="line">myLineChart.render(duration, lazy);</div></pre></td></tr></table></figure>
+<h4 id="stop"><a href="#stop" class="headerlink" title=".stop()"></a>.stop()</h4><p>Use this to stop any current animation loop. This will pause the chart during any current animation frame. Call <code>.render()</code> to re-animate.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Stops the charts animation loop at its current frame</span></div><div class="line">myLineChart.stop();</div><div class="line"><span class="comment">// =&gt; returns 'this' for chainability</span></div></pre></td></tr></table></figure>
+<h4 id="resize"><a href="#resize" class="headerlink" title=".resize()"></a>.resize()</h4><p>Use this to manually resize the canvas element. This is run each time the canvas container is resized, but you can call this method manually if you change the size of the canvas nodes container element.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Resizes &amp; redraws to fill its container element</span></div><div class="line">myLineChart.resize();</div><div class="line"><span class="comment">// =&gt; returns 'this' for chainability</span></div></pre></td></tr></table></figure>
+<h4 id="clear"><a href="#clear" class="headerlink" title=".clear()"></a>.clear()</h4><p>Will clear the chart canvas. Used extensively internally between animation frames, but you might find it useful.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Will clear the canvas that myLineChart is drawn on</span></div><div class="line">myLineChart.clear();</div><div class="line"><span class="comment">// =&gt; returns 'this' for chainability</span></div></pre></td></tr></table></figure>
+<h4 id="toBase64Image"><a href="#toBase64Image" class="headerlink" title=".toBase64Image()"></a>.toBase64Image()</h4><p>This returns a base 64 encoded string of the chart in it’s current state.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">myLineChart.toBase64Image();</div><div class="line"><span class="comment">// =&gt; returns png data url of the image on the canvas</span></div></pre></td></tr></table></figure>
+<h4 id="generateLegend"><a href="#generateLegend" class="headerlink" title=".generateLegend()"></a>.generateLegend()</h4><p>Returns an HTML string of a legend for that chart. The legend is generated from the <code>legendCallback</code> in the options.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">myLineChart.generateLegend();</div><div class="line"><span class="comment">// =&gt; returns HTML string of a legend for this chart</span></div></pre></td></tr></table></figure>
+<h4 id="getElementAtEvent-e"><a href="#getElementAtEvent-e" class="headerlink" title=".getElementAtEvent(e)"></a>.getElementAtEvent(e)</h4><p>Calling <code>getElementAtEvent(event)</code> on your Chart instance passing an argument of an event, or jQuery event, will return the single element at the event position. If there are multiple items within range, only the first is returned</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">myLineChart.getElementAtEvent(e);</div><div class="line"><span class="comment">// =&gt; returns the first element at the event point.</span></div></pre></td></tr></table></figure>
+<h4 id="getElementsAtEvent-e"><a href="#getElementsAtEvent-e" class="headerlink" title=".getElementsAtEvent(e)"></a>.getElementsAtEvent(e)</h4><p>Looks for the element under the event point, then returns all elements at the same data index. This is used internally for ‘label’ mode highlighting.</p>
+<p>Calling <code>getElementsAtEvent(event)</code> on your Chart instance passing an argument of an event, or jQuery event, will return the point elements that are at that the same position of that event.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">canvas.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> activePoints = myLineChart.getElementsAtEvent(evt);</div><div class="line">	<span class="comment">// =&gt; activePoints is an array of points on the canvas that are at the same position as the click event.</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>This functionality may be useful for implementing DOM based tooltips, or triggering custom behaviour in your application.</p>
+<h4 id="getDatasetAtEvent-e"><a href="#getDatasetAtEvent-e" class="headerlink" title=".getDatasetAtEvent(e)"></a>.getDatasetAtEvent(e)</h4><p>Looks for the element under the event point, then returns all elements from that dataset. This is used internally for ‘dataset’ mode highlighting</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">myLineChart.getDatasetAtEvent(e);</div><div class="line"><span class="comment">// =&gt; returns an array of elements</span></div></pre></td></tr></table></figure>
+<h3 id="External-Tooltips"><a href="#External-Tooltips" class="headerlink" title="External Tooltips"></a>External Tooltips</h3><p>You can enable custom tooltips in the global or chart configuration like so:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> myPieChart = <span class="keyword">new</span> Chart(ctx, &#123;</div><div class="line">	<span class="attr">type</span>: <span class="string">'pie'</span>,</div><div class="line">	<span class="attr">data</span>: data,</div><div class="line">	<span class="attr">options</span>: &#123;</div><div class="line">		<span class="attr">tooltips</span>: &#123;</div><div class="line">			<span class="attr">custom</span>: <span class="function"><span class="keyword">function</span>(<span class="params">tooltip</span>) </span>&#123;</div><div class="line">				<span class="comment">// tooltip will be false if tooltip is not visible or should be hidden</span></div><div class="line">				<span class="keyword">if</span> (!tooltip) &#123;</div><div class="line">					<span class="keyword">return</span>;</div><div class="line">				&#125;</div><div class="line"></div><div class="line">				<span class="comment">// Otherwise, tooltip will be an object with all tooltip properties like:</span></div><div class="line"></div><div class="line">				<span class="comment">// tooltip.caretSize</span></div><div class="line">				<span class="comment">// tooltip.caretPadding</span></div><div class="line">				<span class="comment">// tooltip.chart</span></div><div class="line">				<span class="comment">// tooltip.cornerRadius</span></div><div class="line">				<span class="comment">// tooltip.fillColor</span></div><div class="line">				<span class="comment">// tooltip.font...</span></div><div class="line">				<span class="comment">// tooltip.text</span></div><div class="line">				<span class="comment">// tooltip.x</span></div><div class="line">				<span class="comment">// tooltip.y</span></div><div class="line">				<span class="comment">// etc...</span></div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>See <code>sample/line-customTooltips.html</code> for examples on how to get started.</p>
+<h3 id="Writing-New-Scale-Types"><a href="#Writing-New-Scale-Types" class="headerlink" title="Writing New Scale Types"></a>Writing New Scale Types</h3><p>Starting with Chart.js 2.0 scales can be individually extended. Scales should always derive from Chart.Scale.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> MyScale = Chart.Scale.extend(&#123;</div><div class="line">	<span class="comment">/* extensions ... */</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// MyScale is now derived from Chart.Scale</span></div></pre></td></tr></table></figure>
+<p>Once you have created your scale class, you need to register it with the global chart object so that it can be used. A default config for the scale may be provided when registering the constructor. The first parameter to the register function is a string key that is used later to identify which scale type to use for a chart.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Chart.scaleService.registerScaleType(<span class="string">'myScale'</span>, MyScale, defaultConfigObject);</div></pre></td></tr></table></figure>
+<p>To use the new scale, simply pass in the string key to the config when creating a chart.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> lineChart = <span class="keyword">new</span> Chart(ctx, &#123;</div><div class="line">	<span class="attr">data</span>: data,</div><div class="line">	<span class="attr">type</span>: <span class="string">'line'</span>,</div><div class="line">	<span class="attr">options</span>: &#123;</div><div class="line">		<span class="attr">scales</span>: &#123;</div><div class="line">			<span class="attr">yAxes</span>: [&#123;</div><div class="line">				<span class="attr">type</span>: <span class="string">'myScale'</span> <span class="comment">// this is the same key that was passed to the registerScaleType function</span></div><div class="line">			&#125;]</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h4 id="Scale-Properties"><a href="#Scale-Properties" class="headerlink" title="Scale Properties"></a>Scale Properties</h4><p>Scale instances are given the following properties during the fitting process.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="attr">left</span>: <span class="built_in">Number</span>, <span class="comment">// left edge of the scale bounding box</span></div><div class="line">	right: <span class="built_in">Number</span>, <span class="comment">// right edge of the bounding box'</span></div><div class="line">	top: <span class="built_in">Number</span>, </div><div class="line">	<span class="attr">bottom</span>: <span class="built_in">Number</span>,</div><div class="line">	<span class="attr">width</span>: <span class="built_in">Number</span>, <span class="comment">// the same as right - left</span></div><div class="line">	height: <span class="built_in">Number</span>, <span class="comment">// the same as bottom - top</span></div><div class="line"></div><div class="line">	<span class="comment">// Margin on each side. Like css, this is outside the bounding box. </span></div><div class="line">	margins: &#123;</div><div class="line">		<span class="attr">left</span>: <span class="built_in">Number</span>,</div><div class="line">		<span class="attr">right</span>: <span class="built_in">Number</span>,</div><div class="line">		<span class="attr">top</span>: <span class="built_in">Number</span>,</div><div class="line">		<span class="attr">bottom</span>: <span class="built_in">Number</span>,</div><div class="line">	&#125;,</div><div class="line"></div><div class="line">	<span class="comment">// Amount of padding on the inside of the bounding box (like CSS)</span></div><div class="line">	paddingLeft: <span class="built_in">Number</span>,</div><div class="line">	<span class="attr">paddingRight</span>: <span class="built_in">Number</span>,</div><div class="line">	<span class="attr">paddingTop</span>: <span class="built_in">Number</span>,</div><div class="line">	<span class="attr">paddingBottom</span>: <span class="built_in">Number</span>,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="Scale-Interface"><a href="#Scale-Interface" class="headerlink" title="Scale Interface"></a>Scale Interface</h4><p>To work with Chart.js, custom scale types must implement the following interface. </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="comment">// Determines the data limits. Should set this.min and this.max to be the data max/min</span></div><div class="line">	determineDataLimits: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</div><div class="line"></div><div class="line">	<span class="comment">// Generate tick marks. this.chart is the chart instance. The data object can be accessed as this.chart.data</span></div><div class="line">	<span class="comment">// buildTicks() should create a ticks array on the axis instance, if you intend to use any of the implementations from the base class</span></div><div class="line">	buildTicks: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</div><div class="line"></div><div class="line">	<span class="comment">// Get the value to show for the data at the given index of the the given dataset, ie this.chart.data.datasets[datasetIndex].data[index]</span></div><div class="line">	getLabelForIndex: <span class="function"><span class="keyword">function</span>(<span class="params">index, datasetIndex</span>) </span>&#123;&#125;,</div><div class="line"></div><div class="line">	<span class="comment">// Get the pixel (x coordinate for horizontal axis, y coordinate for vertical axis) for a given value</span></div><div class="line">	<span class="comment">// @param index: index into the ticks array</span></div><div class="line">	<span class="comment">// @param includeOffset: if true, get the pixel halway between the given tick and the next</span></div><div class="line">	getPixelForTick: <span class="function"><span class="keyword">function</span>(<span class="params">index, includeOffset</span>) </span>&#123;&#125;,</div><div class="line"></div><div class="line">	<span class="comment">// Get the pixel (x coordinate for horizontal axis, y coordinate for vertical axis) for a given value</span></div><div class="line">	<span class="comment">// @param value : the value to get the pixel for</span></div><div class="line">	<span class="comment">// @param index : index into the data array of the value</span></div><div class="line">	<span class="comment">// @param datasetIndex : index of the dataset the value comes from</span></div><div class="line">	<span class="comment">// @param includeOffset : if true, get the pixel halway between the given tick and the next</span></div><div class="line">	getPixelForValue: <span class="function"><span class="keyword">function</span>(<span class="params">value, index, datasetIndex, includeOffset</span>) </span>&#123;&#125;</div><div class="line"></div><div class="line">	<span class="comment">// Get the value for a given pixel (x coordinate for horizontal axis, y coordinate for vertical axis)</span></div><div class="line">	<span class="comment">// @param pixel : pixel value</span></div><div class="line">	getValueForPixel: <span class="function"><span class="keyword">function</span>(<span class="params">pixel</span>) </span>&#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Optionally, the following methods may also be overwritten, but an implementation is already provided by the <code>Chart.Scale</code> base class.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Transform the ticks array of the scale instance into strings. The default implementation simply calls this.options.ticks.callback(numericalTick, index, ticks); </span></div><div class="line">convertTicksToLabels: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</div><div class="line"></div><div class="line"><span class="comment">// Determine how much the labels will rotate by. The default implementation will only rotate labels if the scale is horizontal. </span></div><div class="line">calculateTickRotation: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</div><div class="line"></div><div class="line"><span class="comment">// Fits the scale into the canvas.</span></div><div class="line"><span class="comment">// this.maxWidth and this.maxHeight will tell you the maximum dimensions the scale instance can be. Scales should endeavour to be as efficient as possible with canvas space.</span></div><div class="line"><span class="comment">// this.margins is the amount of space you have on either side of your scale that you may expand in to. This is used already for calculating the best label rotation</span></div><div class="line"><span class="comment">// You must set this.minSize to be the size of your scale. It must be an object containing 2 properties: width and height.</span></div><div class="line"><span class="comment">// You must set this.width to be the width and this.height to be the height of the scale</span></div><div class="line">fit: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</div><div class="line"></div><div class="line"><span class="comment">// Draws the scale onto the canvas. this.(left|right|top|bottom) will have been populated to tell you the area on the canvas to draw in</span></div><div class="line"><span class="comment">// @param chartArea : an object containing four properties: left, right, top, bottom. This is the rectangle that lines, bars, etc will be drawn in. It may be used, for example, to draw grid lines.</span></div><div class="line">draw: <span class="function"><span class="keyword">function</span>(<span class="params">chartArea</span>) </span>&#123;&#125;,</div></pre></td></tr></table></figure>
+<p>The Core.Scale base class also has some utility functions that you may find useful.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;	</div><div class="line">	<span class="comment">// Returns true if the scale instance is horizontal</span></div><div class="line">	isHorizontal: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</div><div class="line"></div><div class="line">	<span class="comment">// Get the correct value from the value from this.chart.data.datasets[x].data[]</span></div><div class="line">	<span class="comment">// If dataValue is an object, returns .x or .y depending on the return of isHorizontal()</span></div><div class="line">	<span class="comment">// If the value is undefined, returns NaN</span></div><div class="line">	<span class="comment">// Otherwise returns the value.</span></div><div class="line">	<span class="comment">// Note that in all cases, the returned value is not guaranteed to be a Number</span></div><div class="line">	getRightValue: <span class="function"><span class="keyword">function</span>(<span class="params">dataValue</span>) </span>&#123;&#125;,</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="Writing-New-Chart-Types"><a href="#Writing-New-Chart-Types" class="headerlink" title="Writing New Chart Types"></a>Writing New Chart Types</h3><p>Chart.js 2.0 introduces the concept of controllers for each dataset. Like scales, new controllers can be written as needed.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Chart.controllers.MyType = Chart.DatasetController.extend(&#123;</div><div class="line"></div><div class="line">&#125;);</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// Now we can create a new instance of our chart, using the Chart.js API</span></div><div class="line"><span class="keyword">new</span> Chart(ctx, &#123;</div><div class="line">	<span class="comment">// this is the string the constructor was registered at, ie Chart.controllers.MyType</span></div><div class="line">	type: <span class="string">'MyType'</span>,</div><div class="line">	<span class="attr">data</span>: data,</div><div class="line">	<span class="attr">options</span>: options</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="Dataset-Controller-Interface"><a href="#Dataset-Controller-Interface" class="headerlink" title="Dataset Controller Interface"></a>Dataset Controller Interface</h4><p>Dataset controllers must implement the following interface.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="comment">// Create elements for each piece of data in the dataset. Store elements in an array on the dataset as dataset.metaData</span></div><div class="line">	addElements: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</div><div class="line"></div><div class="line">	<span class="comment">// Create a single element for the data at the given index and reset its state</span></div><div class="line">	addElementAndReset: <span class="function"><span class="keyword">function</span>(<span class="params">index</span>) </span>&#123;&#125;,</div><div class="line"></div><div class="line">	<span class="comment">// Draw the representation of the dataset</span></div><div class="line">	<span class="comment">// @param ease : if specified, this number represents how far to transition elements. See the implementation of draw() in any of the provided controllers to see how this should be used</span></div><div class="line">	draw: <span class="function"><span class="keyword">function</span>(<span class="params">ease</span>) </span>&#123;&#125;,</div><div class="line"></div><div class="line">	<span class="comment">// Remove hover styling from the given element</span></div><div class="line">	removeHoverStyle: <span class="function"><span class="keyword">function</span>(<span class="params">element</span>) </span>&#123;&#125;,</div><div class="line"></div><div class="line">	<span class="comment">// Add hover styling to the given element</span></div><div class="line">	setHoverStyle: <span class="function"><span class="keyword">function</span>(<span class="params">element</span>) </span>&#123;&#125;,</div><div class="line"></div><div class="line">	<span class="comment">// Update the elements in response to new data</span></div><div class="line">	<span class="comment">// @param reset : if true, put the elements into a reset state so they can animate to their final values</span></div><div class="line">	update: <span class="function"><span class="keyword">function</span>(<span class="params">reset</span>) </span>&#123;&#125;,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>The following methods may optionally be overridden by derived dataset controllers<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="comment">// Initializes the controller</span></div><div class="line">	initialize: <span class="function"><span class="keyword">function</span>(<span class="params">chart, datasetIndex</span>) </span>&#123;&#125;,</div><div class="line"></div><div class="line">	<span class="comment">// Ensures that the dataset represented by this controller is linked to a scale. Overridden to helpers.noop in the polar area and doughnut controllers as these</span></div><div class="line">	<span class="comment">// chart types using a single scale</span></div><div class="line">	linkScales: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</div><div class="line"></div><div class="line">	<span class="comment">// Called by the main chart controller when an update is triggered. The default implementation handles the number of data points changing and creating elements appropriately. </span></div><div class="line">	buildOrUpdateElements: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="Extending-Existing-Chart-Types"><a href="#Extending-Existing-Chart-Types" class="headerlink" title="Extending Existing Chart Types"></a>Extending Existing Chart Types</h3><p>Extending or replacing an existing controller type is easy. Simply replace the constructor for one of the built in types with your own.</p>
+<p>The built in controller types are:</p>
+<ul>
+<li><code>Chart.controllers.line</code></li>
+<li><code>Chart.controllers.bar</code></li>
+<li><code>Chart.controllers.radar</code></li>
+<li><code>Chart.controllers.doughnut</code></li>
+<li><code>Chart.controllers.polarArea</code></li>
+<li><code>Chart.controllers.bubble</code></li>
+</ul>
+<h4 id="Bar-Controller"><a href="#Bar-Controller" class="headerlink" title="Bar Controller"></a>Bar Controller</h4><p>The bar controller has a special property that you should be aware of. To correctly calculate the width of a bar, the controller must determine the number of datasets that map to bars. To do this, the bar controller attaches a property <code>bar</code> to the dataset during initialization. If you are creating a replacement or updated bar controller, you should do the same. This will ensure that charts with regular bars and your new derived bars will work seamlessly.</p>
+<h3 id="Creating-Plugins"><a href="#Creating-Plugins" class="headerlink" title="Creating Plugins"></a>Creating Plugins</h3><p>Starting with v2.1.0, you can create plugins for chart.js. To register your plugin, simply call <code>Chart.pluginService.register</code> and pass your plugin in.<br>Plugins will be called at the following times</p>
+<ul>
+<li>Start of initialization</li>
+<li>End of initialization</li>
+<li>Start of update</li>
+<li>After the chart scales have calculated</li>
+<li>End of update (before render occurs)</li>
+<li>Start of draw</li>
+<li>End of draw</li>
+<li>Before an animation is started</li>
+</ul>
+<p>Plugins should derive from Chart.PluginBase and implement the following interface<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="attr">beforeInit</span>: <span class="function"><span class="keyword">function</span>(<span class="params">chartInstance</span>) </span>&#123; &#125;,</div><div class="line">	<span class="attr">afterInit</span>: <span class="function"><span class="keyword">function</span>(<span class="params">chartInstance</span>) </span>&#123; &#125;,</div><div class="line"></div><div class="line">	<span class="attr">beforeUpdate</span>: <span class="function"><span class="keyword">function</span>(<span class="params">chartInstance</span>) </span>&#123; &#125;,</div><div class="line">	<span class="attr">afterScaleUpdate</span>: <span class="function"><span class="keyword">function</span>(<span class="params">chartInstance</span>) </span>&#123; &#125;</div><div class="line">	afterUpdate: <span class="function"><span class="keyword">function</span>(<span class="params">chartInstance</span>) </span>&#123; &#125;,</div><div class="line"></div><div class="line">	<span class="comment">// This is called at the start of a render. It is only called once, even if the animation will run for a number of frames. Use beforeDraw or afterDraw </span></div><div class="line">	<span class="comment">// to do something on each animation frame</span></div><div class="line">	beforeRender: <span class="function"><span class="keyword">function</span>(<span class="params">chartInstance</span>) </span>&#123; &#125;,</div><div class="line"></div><div class="line">	<span class="comment">// Easing is for animation</span></div><div class="line">	beforeDraw: <span class="function"><span class="keyword">function</span>(<span class="params">chartInstance, easing</span>) </span>&#123; &#125;,</div><div class="line">	<span class="attr">afterDraw</span>: <span class="function"><span class="keyword">function</span>(<span class="params">chartInstance, easing</span>) </span>&#123; &#125;</div><div class="line"></div><div class="line">	destroy: <span class="function"><span class="keyword">function</span>(<span class="params">chartInstance</span>) </span>&#123; &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="Building-Chart-js"><a href="#Building-Chart-js" class="headerlink" title="Building Chart.js"></a>Building Chart.js</h3><p>Chart.js uses <a href="http://gulpjs.com/" target="_blank">gulp</a> to build the library into a single JavaScript file. </p>
+<p>Firstly, we need to ensure development dependencies are installed. With node and npm installed, after cloning the Chart.js repo to a local directory, and navigating to that directory in the command line, we can run the following:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm install</div><div class="line">npm install -g gulp</div></pre></td></tr></table></figure>
+<p>This will install the local development dependencies for Chart.js, along with a CLI for the JavaScript task runner <a href="http://gulpjs.com/" target="_blank">gulp</a>.</p>
+<p>Now, we can run the <code>gulp build</code> task.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gulp build</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://freejokeone.github.io/project/Data/vendors/Chart.js/docs/09-Advanced.html" data-id="cj3tflkab001yucuyj6qi51sj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sass/">sass</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/交互设计/">交互设计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心理学/">心理学</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/sass/" style="font-size: 15px;">sass</a> <a href="/tags/交互设计/" style="font-size: 10px;">交互设计</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/心理学/" style="font-size: 10px;">心理学</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/09/Sass-Guidelines_3/">Sass_Guidelines_3</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/25/Javascript数据结构与算法（概述）/">Javascript数据结构与算法（概述）</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/24/Sass_Guidelines_2/">Sass Guidelines(2)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/21/设计心理学_格式塔/">设计心理学_格式塔</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/18/Sass_Guidelines_1/">Sass Guidelines(1)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Author: admine<br>
+      Link Me <a href="mailto:wangningcumt@126.com">wangningcumt@126.com</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="https://cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
