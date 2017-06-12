@@ -5,7 +5,7 @@
     <entry>
       <title><![CDATA[Chart_visual]]></title>
       <url>/2017/06/12/demo2/</url>
-      <content type="html"><![CDATA[<h4 id="Data-Visualization"><a href="#Data-Visualization" class="headerlink" title="Data Visualization"></a>Data Visualization</h4><p><em>相关内容参考自<a href="https://sass-guidelin.es/" target="_blank" rel="external">sass-guidelin</a></em></p>
+      <content type="html"><![CDATA[<h4 id="Data-Visualization"><a href="#Data-Visualization" class="headerlink" title="Data Visualization"></a>Data Visualization</h4><p>_数据可视化<a href="http://share.sinyoo.net/wn/Data/" target="_blank" rel="external">Chart_Visual</a>_</p>
 ]]></content>
       
         
@@ -20,7 +20,7 @@
     <entry>
       <title><![CDATA[Map_guidance]]></title>
       <url>/2017/06/12/demo1/</url>
-      <content type="html"><![CDATA[<h4 id="AMAP"><a href="#AMAP" class="headerlink" title="AMAP"></a>AMAP</h4><p><em>相关内容参考自<a href="https://sass-guidelin.es/" target="_blank" rel="external">sass-guidelin</a></em></p>
+      <content type="html"><![CDATA[<h4 id="AMAP"><a href="#AMAP" class="headerlink" title="AMAP"></a>AMAP</h4><p>_地图导航<a href="http://share.sinyoo.net/wn/Map/" target="_blank" rel="external">A_MAP</a>_</p>
 ]]></content>
       
         
@@ -359,9 +359,9 @@
             
             <tag> 前端 </tag>
             
-            <tag> sass </tag>
-            
             <tag> css </tag>
+            
+            <tag> sass </tag>
             
         </tags>
         
